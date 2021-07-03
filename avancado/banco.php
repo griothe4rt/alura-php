@@ -34,11 +34,14 @@ $contasCorrentes['123.256.789-12'] = depositar(
 );
 
 foreach ($contasCorrentes as $cpf => $conta) {
-    ['titular' => $titular, 'saldo' => $saldo] = $conta; #a função list pode ser substituida por []
+    list('titular' => $titular, 'saldo' => $saldo) = $conta; #a função list pode ser substituida por []
     exibeMensagem(
         "$cpf $titular $saldo"
     );
 }
 
 /* Passagem por referência usa o & comercial.
-E fazer o que quiser com ela. Qualquer alteração feita vai ser na variavel original */
+E fazer o que quiser com ela. Qualquer alteração feita vai ser na variavel original 
+
+A função unset() pode receber mais de uma variavel por vez e serve para "excluir" uma variavel
+*/

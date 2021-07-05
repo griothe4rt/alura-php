@@ -55,7 +55,7 @@ A função list pode ser substituida por []*/
     <dl>
         <?php foreach($contasCorrentes as $conta) { ?>
         <dt>
-            <h3><?=$conta['titular']; - $cpf;?></h3>
+            <h3><?=$conta['titular']?></h3>
         </dt>
         <dd>
                 Saldo: <?=$conta['saldo']; ?>

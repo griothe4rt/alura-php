@@ -11,3 +11,5 @@ $primeiraConta->saca(100); #essa forma está correta
 echo $primeiraConta->recuperaNomeTitular() . PHP_EOL;
 echo $primeiraConta->recuperaSaldo() . PHP_EOL;
 echo $primeiraConta->recuperaCpfTitular() . PHP_EOL;
+
+$segundaConta = new Conta('987.654.321-01', 'Ana');

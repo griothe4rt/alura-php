@@ -6,9 +6,9 @@ class Conta
     private string $nomeTitular;
     private float $saldo = 0; #Iremos deixar private para que apenas a propria Conta possa acessar essa função
 
-    public function saca(float $ValorASacar): void
+    public function saca(float $valorASacar): void
     {
-        if ($valorASacar > $this->$saldo) {
+        if ($valorASacar > $this->saldo) {
             echo "Saldo indisponível";
             return;
         }
@@ -24,14 +24,14 @@ class Conta
             $this->saldo += $valorADepositar;
         }
 
-    public function transfere(float $ValorATransferir, Conta $contaDestino): void
+    public function transfere(float $valorATransferir, Conta $contaDestino): void
     {
         if ($valorATransferir > $this->saldo) {
             echo "Saldo indisponível";
             return;
         }
-        $this->sacar($ValorATransferir);
-        $contaDestino->depositar($valorATransferir);
+        $this->saca($valorATransferir);
+        $contaDestino->deposita($valorATransferir);
     }
 
     public function recuperaSaldo(): float

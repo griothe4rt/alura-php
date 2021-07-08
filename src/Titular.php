@@ -1,19 +1,18 @@
 <?php
 
-
 class Titular
 {
-    private Cpf $cpf;
-    private string $nome;
+    private $cpf;
+    private $nome;
 
-    public function __construct(Cpf $cpf, string $nome)
+    public function __construct(CPF $cpf, string $nome)
     {
         $this->cpf = $cpf;
-        $this->nome = $nome;
         $this->validaNomeTitular($nome);
+        $this->nome = $nome;
     }
 
-    public function recuperaCpf(): Cpf
+    public function recuperaCpf(): string
     {
         return $this->cpf->recuperaNumero();
     }
@@ -26,8 +25,8 @@ class Titular
     private function validaNomeTitular(string $nomeTitular)
     {
         if (strlen($nomeTitular) < 5) {
-            echo "É necessário digitar o nome e sobrenome.";
+            echo "Nome precisa ter pelo menos 5 caracteres";
             exit();
-        };
+        }
     }
 }

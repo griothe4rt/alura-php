@@ -2,16 +2,21 @@
 
 class Conta
 {
-    private Titular $titular; # Propriedades sempre privadas
-    private float $saldo; #Iremos deixar private para que apenas a propria Conta possa acessar essa função
+    private $titular;
+    private $saldo;
     private static $numeroDeContas = 0;
 
-    public function __construct(Titular $titular) # Define os parametros a serem recebidos para construir essa classe
+    public function __construct(Titular $titular)
     {
         $this->titular = $titular;
         $this->saldo = 0;
 
         self::$numeroDeContas++;
+    }
+
+    public function __destruct()
+    {
+        self::$numeroDeContas--;
     }
 
     public function saca(float $valorASacar): void
@@ -20,17 +25,19 @@ class Conta
             echo "Saldo indisponível";
             return;
         }
-            $this->saldo -= $valorASacar;
+
+        $this->saldo -= $valorASacar;
     }
 
-    public function deposita(float $valorADepositar): void # Apenas metódos públicos
+    public function deposita(float $valorADepositar): void
     {
         if ($valorADepositar < 0) {
             echo "Valor precisa ser positivo";
             return;
         }
-            $this->saldo += $valorADepositar;
-        }
+
+        $this->saldo += $valorADepositar;
+    }
 
     public function transfere(float $valorATransferir, Conta $contaDestino): void
     {
@@ -38,8 +45,9 @@ class Conta
             echo "Saldo indisponível";
             return;
         }
-        $this->saca($valorATransferir);
-        $contaDestino->deposita($valorATransferir);
+
+        $this->sacar($valorATransferir);
+        $contaDestino->depositar($valorATransferir);
     }
 
     public function recuperaSaldo(): float
@@ -51,6 +59,7 @@ class Conta
     {
         return $this->titular->recuperaNome();
     }
+
     public function recuperaCpfTitular(): string
     {
         return $this->titular->recuperaCpf();

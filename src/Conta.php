@@ -2,16 +2,16 @@
 
 class Conta
 {
-    private string $cpfTitular; # Propriedades sempre privadas
-    private string $nomeTitular;
+    private Titular $titular; # Propriedades sempre privadas
     private float $saldo; #Iremos deixar private para que apenas a propria Conta possa acessar essa função
+    private static $numeroDeContas = 0;
 
-    public function __construct(string $cpfTitular, string $nomeTitular) # Define os parametros a serem recebidos para construir essa classe
+    public function __construct(Titular $titular) # Define os parametros a serem recebidos para construir essa classe
     {
-        $this->cpfTitular = $cpfTitular;
-        $this->validaNomeTitular($nomeTitular);
-        $this->nomeTitular = $nomeTitular;
+        $this->titular = $titular;
         $this->saldo = 0;
+
+        self::$numeroDeContas++;
     }
 
     public function saca(float $valorASacar): void
@@ -47,21 +47,17 @@ class Conta
         return $this->saldo;
     }
 
-    public function recuperaCpfTitular(): string
-    {
-        return $this->cpfTitular;
-    }
-
     public function recuperaNomeTitular(): string
     {
-        return $this->nomeTitular;
+        return $this->titular->recuperaNome();
+    }
+    public function recuperaCpfTitular(): string
+    {
+        return $this->titular->recuperaCpf();
     }
 
-    private function validaNomeTitular(string $nomeTitular)
+    public static function recuperaNumeroDeContas(): int
     {
-        if (strlen($nomeTitular) < 5) {
-            echo "É necessário digitar o nome e sobrenome.";
-            exit();
-        };
+        return self::$numeroDeContas;
     }
 }

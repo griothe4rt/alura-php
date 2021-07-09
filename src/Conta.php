@@ -2,8 +2,8 @@
 
 class Conta
 {
-    private $titular;
-    private $saldo;
+    private Titular $titular;
+    private float $saldo;
     private static $numeroDeContas = 0;
 
     public function __construct(Titular $titular)
@@ -46,8 +46,8 @@ class Conta
             return;
         }
 
-        $this->sacar($valorATransferir);
-        $contaDestino->depositar($valorATransferir);
+        $this->saca($valorATransferir);
+        $contaDestino->deposita($valorATransferir);
     }
 
     public function recuperaSaldo(): float

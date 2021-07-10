@@ -1,5 +1,7 @@
 <?php
 
+namespace Alura\Banco\Modelo\Conta; # Definindo Namespaces
+
 class Conta
 {
     private Titular $titular;

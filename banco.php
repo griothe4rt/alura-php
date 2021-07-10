@@ -1,9 +1,13 @@
 <?php
 
-require_once 'src/Conta.php';
-require_once 'src/Endereco.php';
-require_once 'src/Titular.php';
-require_once 'src/CPF.php';
+require_once 'src/Modelo/Conta/Conta.php';
+require_once 'src/Modelo/Endereco.php';
+require_once 'src/Modelo/Pessoa.php';
+require_once 'src/Modelo/Conta/Titular.php';
+require_once 'src/Modelo/CPF.php';
+
+use Alura\Banco\Modelo\Conta\{Conta, Titular}; # usando namespaces
+use Alura\Banco\Modelo\{Endereco, CPF};
 
 $endereco =  new Endereco('Sao Paulo', 'Qualquer', 'Rua Sao plinplin', '555');
 $vinicius = new Titular(new CPF('123.456.789-10'), 'Vinicius Dias', $endereco);

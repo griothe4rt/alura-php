@@ -5,7 +5,7 @@ namespace Alura\Banco\Modelo\Conta; # Definindo Namespaces
 class Conta
 {
     private Titular $titular;
-    private float $saldo;
+    protected float $saldo;
     private static $numeroDeContas = 0;
 
     public function __construct(Titular $titular)
@@ -23,12 +23,13 @@ class Conta
 
     public function saca(float $valorASacar): void
     {
-        if ($valorASacar > $this->saldo) {
+        $tarifaSaque = $valorASacar * 0.05;
+        $valorSaque = $valorASacar + $tarifaSaque;
+        if ($valorSaque > $this->saldo) {
             echo "Saldo indisponível";
             return;
         }
-
-        $this->saldo -= $valorASacar;
+        $this->saldo -= $valorSaque;
     }
 
     public function deposita(float $valorADepositar): void
